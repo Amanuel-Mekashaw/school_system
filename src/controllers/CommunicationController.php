@@ -166,4 +166,67 @@ public function deleteRecord($id) {
     }
 }
 
+public function getRecords($filters) {
+    $required = ['student_id', 'date', 'semester', 'quarter', 'academic_year'];
+
+    foreach ($required as $field) {
+        if (empty($filters[$field])) {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "$field is required"]);
+            return;
+        }
+    }
+
+    $sql = "SELECT * FROM communication_records
+            WHERE student_id = :student_id
+              AND date = :date
+              AND semester = :semester
+              AND quarter = :quarter
+              AND academic_year = :academic_year
+            LIMIT 1";
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute([
+        ':student_id' => $filters['student_id'],
+        ':date' => $filters['date'],
+        ':semester' => $filters['semester'],
+        ':quarter' => $filters['quarter'],
+        ':academic_year' => $filters['academic_year']
+    ]);
+
+    $record = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$record) {
+        http_response_code(404);
+        echo json_encode(["status" => "error", "message" => "Record not found"]);
+        return;
+    }
+
+    // Get subjects
+    $stmt = $this->db->prepare("SELECT cs.*, s.name AS subject
+                                FROM communication_subjects cs
+                                JOIN subjects s ON s.id = cs.subject_id
+                                WHERE cs.communication_record_id = ?");
+    $stmt->execute([$record['id']]);
+    $record['subjects'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Get traits
+    $stmt = $this->db->prepare("SELECT * FROM communication_traits WHERE communication_record_id = ?");
+    $stmt->execute([$record['id']]);
+    $traits = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $traitMap = [];
+    foreach ($traits as $trait) {
+        $traitMap[$trait['trait_code']] = (bool) $trait['value'];
+    }
+
+    $record['traits'] = $traitMap;
+
+    echo json_encode([
+        "status" => "success",
+        "record" => $record
+    ]);
+}
+
+
 }
