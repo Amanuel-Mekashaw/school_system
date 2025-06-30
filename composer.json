@@ -1,0 +1,13 @@
+{
+  "name": "school_system_backend",
+  "type": "project",
+  "require": {
+    "firebase/php-jwt": "^6.11"
+  },
+  "autoload": {
+    "psr-4": {
+      "mek\\SchoolSystemBackend\\": "src/"
+    }
+  },
+  "authors": []
+}
