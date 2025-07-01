@@ -21,6 +21,42 @@ A backend system built with **raw PHP** (no framework) to handle teacher-submitt
 
 ---
 
+# How to Import Migration File into XAMPP (phpMyAdmin)
+
+1. Start your XAMPP control panel and make sure **Apache** and **MySQL** are running.
+
+2. Open your browser and go to:
+
+http://localhost/phpmyadmin/
+
+3. Create a new database:
+
+- Click on **Databases** tab.
+- Enter a database name (e.g., `communication_book`).
+- Choose **utf8_general_ci** collation (optional).
+- Click **Create**.
+
+4. Import the migration file:
+
+- Click on your newly created database in the left sidebar.
+- Click the **Import** tab.
+- Click **Choose File** and select your SQL migration file (e.g., `seed_data.sql`).
+- Leave the format as **SQL**.
+- Click **Go** at the bottom.
+
+5. Wait for the import to finish:
+
+- You should see a success message if everything goes well.
+- All tables and seed data are now imported and ready to use.
+
+---
+
+If you run into errors, verify:
+
+- The SQL file is valid and compatible with MySQL.
+- Your database user has permissions.
+- The database selected matches your config.
+
 ## 📁 Folder Structure
 
 ```
