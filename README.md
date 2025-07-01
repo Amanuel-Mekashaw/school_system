@@ -60,7 +60,7 @@ If you run into errors, verify:
 ## 📁 Folder Structure
 
 ```
-/xampp/htdocs/communication-book/
+/xampp/htdocs/school_system/
 │
 ├── config/
 │   └── database.php
