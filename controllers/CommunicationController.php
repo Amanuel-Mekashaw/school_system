@@ -166,7 +166,7 @@ public function deleteRecord($id) {
     }
 }
 
-public function getRecords($filters) {
+public function getFilteredRecord($filters) {
     $required = ['student_id', 'date', 'semester', 'quarter', 'academic_year'];
 
     foreach ($required as $field) {
