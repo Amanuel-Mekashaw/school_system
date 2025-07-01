@@ -32,7 +32,7 @@ http://localhost/phpmyadmin/
 3. Create a new database:
 
 - Click on **Databases** tab.
-- Enter a database name (e.g., `communication_book`).
+- Enter a database name (e.g., `e_communication`).
 - Choose **utf8_general_ci** collation (optional).
 - Click **Create**.
 
@@ -40,7 +40,7 @@ http://localhost/phpmyadmin/
 
 - Click on your newly created database in the left sidebar.
 - Click the **Import** tab.
-- Click **Choose File** and select your SQL migration file (e.g., `seed_data.sql`).
+- Click **Choose File** and select your SQL migration file (e.g., `main_migrationfile.sql`).
 - Leave the format as **SQL**.
 - Click **Go** at the bottom.
 
@@ -110,10 +110,10 @@ C:\xampp\htdocs\communication-book\
 In phpMyAdmin or your SQL client:
 
 ```sql
-CREATE DATABASE communication_book;
+CREATE DATABASE e_communication;
 ```
 
-Then import `migrations/seed_data.sql` into that DB. It includes:
+Then import `migrations/main_migrationfile.sql` into that DB. It includes:
 
 - Table creation
 - Some initial grades, students, subjects, and teachers
@@ -126,7 +126,7 @@ Edit `config/database.php`:
 
 ```php
 private $host = "localhost";
-private $db_name = "communication_book";
+private $db_name = "e_communication";
 private $username = "root";
 private $password = ""; // use your XAMPP password if needed
 ```
@@ -152,7 +152,7 @@ RewriteRule ^ index.php [QSA,L]
 Navigate to:
 
 ```
-http://localhost/communication-book/public/
+http://localhost/school_system/public/index.php
 ```
 
 You’re ready to hit the REST endpoints.
@@ -166,7 +166,7 @@ You’re ready to hit the REST endpoints.
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | POST   | `/api/communication-records` | Create a record |
-| GET    | `/api/communication-records?student_id=1&date=...&semester=...` | Get one by filter |
+| GET    | `/api/communication-records?student_id=1&date=...&semester=...quarter=1&academic_year=2022-2023` | Get one by filter |
 | PUT    | `/api/communication-records?id=12` | Update a record |
 | DELETE | `/api/communication-records?id=12` | Delete a record |
 
@@ -285,21 +285,9 @@ Use any REST tool:
 
 ---
 
-## 💡 Future Ideas
-
-- Upload scanned worksheets
-- PDF export of reports
-- Admin dashboard (view all records)
-- Teacher login with JWT
-- Activity logs & timestamps
-
----
-
 ## 🧠 Stack
 
 - PHP (vanilla)
 - MySQL
 - Apache (via XAMPP)
-- Modular MVC-style structure
-
 ---
