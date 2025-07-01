@@ -94,13 +94,13 @@ If you run into errors, verify:
 
 ```bash
 # inside your XAMPP htdocs directory
-git clone <this-repo> communication-book
+git clone <this-repo>
 ```
 
 Or manually copy the files to:
 
 ```
-C:\xampp\htdocs\communication-book\
+C:\xampp\htdocs\school_system\
 ```
 
 ---

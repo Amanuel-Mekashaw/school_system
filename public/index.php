@@ -43,6 +43,7 @@ switch ($path) {
         break;
 
     case '/school_system/public/index.php/api/subjects':
+        
         routeResource(new SubjectController(), 'subjects');
         break;
 
