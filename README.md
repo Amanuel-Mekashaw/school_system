@@ -94,7 +94,7 @@ If you run into errors, verify:
 
 ```bash
 # inside your XAMPP htdocs directory
-git clone <this-repo>
+git clone https://github.com/Amanuel-Mekashaw/school_system
 ```
 
 Or manually copy the files to:
